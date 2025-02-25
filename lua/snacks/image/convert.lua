@@ -188,6 +188,20 @@ local commands = {
       }
     end,
   },
+  plotly = {
+    cmd = {
+      cmd = "plotly_cli.py",
+      args = function(step)
+        return {
+          step.meta.src,
+          "--output_png", step.file
+        }
+      end,
+    },
+    file = function(convert, ctx)
+      return convert:tmpfile("png")
+    end,
+  },
 }
 
 local have = {} ---@type table<string, boolean>

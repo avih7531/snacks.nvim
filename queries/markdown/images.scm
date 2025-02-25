@@ -15,3 +15,11 @@
   (#set! injection.language "mermaid")
   (#set! image.ext "mmd")
 ) @image
+
+(fenced_code_block
+  (info_string (language) @lang)
+  (#eq? @lang "plotly")
+  (code_fence_content) @image.content
+  (#set! injection.language "json")
+  (#set! image.ext "plotly")
+) @image
