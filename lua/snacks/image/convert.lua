@@ -192,8 +192,15 @@ local commands = {
     cmd = {
       cmd = "plotly_cli.py",
       args = function(step)
+        -- First save the content to a temp JSON file
+        local json_file = step.convert:tmpfile("json")
+        local f = io.open(json_file, "w")
+        if f then
+          f:write(step.meta.content)
+          f:close()
+        end
         return {
-          step.meta.src,
+          json_file,
           "--output_png", step.file
         }
       end,
