@@ -188,28 +188,16 @@ local commands = {
       }
     end,
   },
-  plotly = {
+   plotly = {
     cmd = {
       cmd = "plotly_cli.py",
-      args = function(step)
-        -- First save the content to a temp JSON file
-        local json_file = step.convert:tmpfile("json")
-        local f = io.open(json_file, "w")
-        if f then
-          f:write(step.meta.content)
-          f:close()
-        end
-        return {
-          json_file,
-          "--output_png", step.file
-        }
-      end,
+      args = { "{src}", "--output_png", "{file}" },
     },
     file = function(convert, ctx)
       return convert:tmpfile("png")
     end,
   },
-}
+ }
 
 local have = {} ---@type table<string, boolean>
 
