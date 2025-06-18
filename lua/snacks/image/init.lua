@@ -107,6 +107,7 @@ local defaults = {
     ---@type snacks.image.args
     mermaid = function()
       local theme = vim.o.background == "light" and "neutral" or "dark"
+      print(scale)
       return { "-i", "{src}", "-o", "{file}", "-b", "transparent", "-t", theme, "-s", "{scale}" }
     end,
     ---@type table<string,snacks.image.args>

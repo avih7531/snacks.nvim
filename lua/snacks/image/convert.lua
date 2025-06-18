@@ -188,16 +188,18 @@ local commands = {
       }
     end,
   },
-   plotly = {
+  plotly = {
     cmd = {
       cmd = "plotly_cli.py",
-      args = { "{src}", "--output_png", "{file}" },
+      args = function()
+        return { "{src}", "--output_png", "{file}" }
+      end,
     },
     file = function(convert, ctx)
-      return convert:tmpfile("png")
+      return convert:tmpfile(vim.o.background .. ".png")
     end,
   },
- }
+}
 
 local have = {} ---@type table<string, boolean>
 
